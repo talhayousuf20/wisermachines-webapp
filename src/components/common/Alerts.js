@@ -1,6 +1,9 @@
 import React from "react";
 
-import { ToastContainer, toast } from "react-toastify";
+import {
+  // ToastContainer,
+  toast,
+} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Button from "@material-ui/core/Button";
@@ -446,22 +449,22 @@ export default function AlertsPopover(props) {
     </Grid>
   );
 
-  const toastsContainer = !openDialog ? (
-    <ToastContainer
-      position="bottom-left"
-      autoClose={false}
-      hideProgressBar={true}
-      newestOnTop={true}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      enableMultiContainer
-      containerId={"ContainerDetails"}
-      limit={1}
-    />
-  ) : null;
+  // const toastsContainer = !openDialog ? (
+  //   <ToastContainer
+  //     position="bottom-left"
+  //     autoClose={false}
+  //     hideProgressBar={true}
+  //     newestOnTop={true}
+  //     closeOnClick
+  //     rtl={false}
+  //     pauseOnFocusLoss
+  //     draggable
+  //     pauseOnHover
+  //     enableMultiContainer
+  //     containerId={"ContainerDetails"}
+  //     limit={1}
+  //   />
+  // ) : null;
 
   const notifyLow = (msg) =>
     toast.info(msg, { containerId: "ContainerDetails" });
@@ -522,7 +525,7 @@ export default function AlertsPopover(props) {
         </Button>
       </Tooltip>
 
-      {toastsContainer}
+      {/* {toastsContainer} */}
 
       <Dialog
         open={openDialog}

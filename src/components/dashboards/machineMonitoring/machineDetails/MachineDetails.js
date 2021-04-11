@@ -50,6 +50,8 @@ const chartColors = {
 
 const timeFiltersList = ["Last Hour", "Last 12 Hours", "Last Day"];
 
+const machineStates = ["Off", "Offload", "Onload"];
+
 const useStyles = makeStyles((theme) => styles(theme));
 
 export default function MachineDetails(props) {
@@ -186,7 +188,7 @@ export default function MachineDetails(props) {
     // temperatureMax,
     // temperatureMin,
     humidity,
-    humidityNow,
+    // humidityNow,
     // humidityMax,
     // humidityMin,
 
@@ -223,7 +225,7 @@ export default function MachineDetails(props) {
       timestamps: timestamps,
       name: "State",
       color: chartColors.machineState,
-      yLabels: ["OFF", "IDLE", "ON"],
+      yLabels: machineStates,
       yMax: 3,
       type: "line",
       step: "center",
@@ -252,21 +254,6 @@ export default function MachineDetails(props) {
       name: "Humidity",
       color: chartColors.humidity,
     },
-  };
-
-  const cardsProps = {
-    // liveData,
-    // currentNow,
-    // lastUpdateTimestamp,
-    // stateNow,
-    // stateNowDuration,
-    unitsConsumed,
-    timeFilter,
-    temperatureNow,
-    humidityNow,
-    offLoadHours: dutyCycle.offLoadHours,
-    onLoadHours: dutyCycle.onLoadHours,
-    machineProfile,
   };
 
   const navbar = (
@@ -321,18 +308,33 @@ export default function MachineDetails(props) {
         <CardsContainerRow1
           data={{
             liveData,
-            currentNow,
             lastUpdateTimestamp,
-            stateNow,
-            stateNowDuration,
+            unitsConsumed,
+            timeFilter,
           }}
         />
       </Grid>
       <Grid item md={9} xs={12}>
-        <CardsContainer data={cardsProps} />
+        <CardsContainer
+          data={{
+            liveData,
+            lastUpdateTimestamp,
+            currentNow,
+            stateNow,
+            stateNowDuration,
+            machineStates,
+            // unitsConsumed,
+            // humidityNow,
+            temperatureNow,
+            offLoadHours: dutyCycle.offLoadHours,
+            onLoadHours: dutyCycle.onLoadHours,
+            machineProfile,
+            timeFilter,
+          }}
+        />
       </Grid>
       <Grid item md={3} xs={12}>
-        <PieChartContainer dutyCycle={dutyCycle} />
+        <PieChartContainer dutyCycle={dutyCycle} labels={machineStates} />
       </Grid>
 
       {/* 

@@ -24,7 +24,7 @@ export default function LineChartContainer(props) {
     machineState,
     machinePower,
     temperature,
-    humidity,
+    // humidity,
   } = props.lineCharts;
 
   const [buttonIndex, setButtonIndex] = useState(0);
@@ -34,7 +34,7 @@ export default function LineChartContainer(props) {
     machineState,
     machinePower,
     temperature,
-    humidity,
+    // humidity,
   ];
 
   const chartNamesList = [
@@ -42,7 +42,7 @@ export default function LineChartContainer(props) {
     "State",
     "Power (W)",
     "Temperature (C)",
-    "Humidity (%RH)",
+    // "Humidity (%RH)",
   ];
 
   const chartButtons = chartsList.map((chart, chartIndex) => {

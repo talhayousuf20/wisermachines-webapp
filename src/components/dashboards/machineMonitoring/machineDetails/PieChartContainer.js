@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => common(theme));
 
 export default function PieChartContainer(props) {
   const data = props.dutyCycle;
+  const { labels } = props;
   const classes = useStyles();
 
   return (
@@ -36,7 +37,7 @@ export default function PieChartContainer(props) {
           {...{ timeout: animationDuration + 5 * animationDuration }}
         >
           <Grid item>
-            <DutyCyclePieChart data={data} />
+            <DutyCyclePieChart data={data} labels={labels} />
           </Grid>
         </Grow>
       </Grid>

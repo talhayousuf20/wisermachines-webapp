@@ -760,7 +760,20 @@ export const parseDataFromSSN = (data, timeFilterIndex) => {
           return 2;
         } else return 0;
       });
-      stateNow = machineStateStr.slice(-1)[0];
+
+      const machineStates = ["Off", "Offload", "Onload"];
+
+      const renameState = (state) => {
+        if (state === "OFF") {
+          return machineStates[0];
+        } else if (state === "IDLE") {
+          return machineStates[1];
+        } else if (state === "ON") {
+          return machineStates[2];
+        } else return "Unknown";
+      };
+
+      stateNow = renameState(machineStateStr.slice(-1)[0]);
       stateNowDuration = timeDifference(
         data.machine_state_duration.slice(-1)[0] * 1000,
         0

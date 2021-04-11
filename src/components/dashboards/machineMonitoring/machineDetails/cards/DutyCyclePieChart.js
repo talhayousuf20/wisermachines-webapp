@@ -4,7 +4,7 @@ import { useState } from "react";
 import Highcharts from "highcharts";
 import PieChart from "highcharts-react-official";
 
-const commonOptions = (offLoad, onLoad, shutdown) => {
+const commonOptions = (offLoad, onLoad, shutdown, labels) => {
   const removeZero = (name, value) => {
     return value === 0
       ? null
@@ -15,9 +15,9 @@ const commonOptions = (offLoad, onLoad, shutdown) => {
   };
 
   const series = [
-    removeZero("Off-Load", offLoad),
-    removeZero("On-Load", onLoad),
-    removeZero("Shutdown", shutdown),
+    removeZero(labels[1], offLoad),
+    removeZero(labels[2], onLoad),
+    removeZero(labels[0], shutdown),
   ].filter((x) => x);
 
   return {
@@ -28,17 +28,17 @@ const commonOptions = (offLoad, onLoad, shutdown) => {
       type: "pie",
       // renderTo: "container",
       spacing: [0, 0, 0, 0],
-      margin: [0, 0, 50, 0],
-      width: 250,
-      height: "100%",
+      margin: [0, 0, 0, 0],
+      width: 300,
+      height: "50%",
     },
     legend: {
-      layout: "horizontal",
-      align: "center",
-      verticalAlign: "bottom",
-      // floating: true,
-      // x: 0,
-      // y: 0,
+      layout: "vertical",
+      align: "right",
+      verticalAlign: "middle",
+      floating: true,
+      x: 0,
+      y: 0,
     },
     credits: {
       enabled: false,
@@ -81,7 +81,11 @@ const commonOptions = (offLoad, onLoad, shutdown) => {
 };
 
 const DutyCyclePieChart = (props) => {
-  const [chartOptions, setChartOptions] = useState(commonOptions(0, 0, 0));
+  const { labels } = props;
+
+  const [chartOptions, setChartOptions] = useState(
+    commonOptions(0, 0, 0, labels)
+  );
 
   React.useEffect(() => {
     const {
@@ -91,7 +95,10 @@ const DutyCyclePieChart = (props) => {
       onLoadHours,
     } = props.data;
 
-    setChartOptions(commonOptions(offLoadHours, onLoadHours, shutdownHours));
+    setChartOptions(
+      commonOptions(offLoadHours, onLoadHours, shutdownHours, labels)
+    );
+    // eslint-disable-next-line
   }, [props.data]);
 
   return (
