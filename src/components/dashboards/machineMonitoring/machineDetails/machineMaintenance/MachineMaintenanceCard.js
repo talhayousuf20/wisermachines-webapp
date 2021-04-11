@@ -18,6 +18,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { smallCard, common } from "../../../../../utils/styles";
 import colors from "../../../../../utils/colors";
 
+import { useSelector, useDispatch } from "react-redux";
+import { getMachineMaintenanceConfig } from "../../../../../redux/actions/machineMonitoring/machineDetailsActions";
+
 const useStyles = makeStyles((theme) => common(theme));
 
 const set = "set";
@@ -26,7 +29,9 @@ const reset = "reset";
 
 export default function MachineMaintenanceCard(props) {
   const { icon, values, disabled } = props.data;
+  const { ID } = props;
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   // Menu
   const [menuAnchorEl, setMenuAnchorEl] = React.useState(null);
@@ -95,6 +100,11 @@ export default function MachineMaintenanceCard(props) {
       </DialogActions>
     </Dialog>
   );
+
+  React.useEffect(() => {
+    getMachineMaintenanceConfig(dispatch, ID);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div>

@@ -330,6 +330,7 @@ export default function MachineDetails(props) {
             onLoadHours: dutyCycle.onLoadHours,
             machineProfile,
             timeFilter,
+            machineID,
           }}
         />
       </Grid>

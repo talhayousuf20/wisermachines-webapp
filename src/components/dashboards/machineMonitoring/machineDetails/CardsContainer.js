@@ -31,6 +31,7 @@ const iconHeight = 40;
 
 export default function CardsContainer(props) {
   const {
+    machineID,
     lastUpdateTimestamp,
     currentNow,
     stateNow,
@@ -139,7 +140,7 @@ export default function CardsContainer(props) {
     <Grow in={true} {...{ timeout: animationDuration + 3 * animationDuration }}>
       <Tooltip title="Hours Till Next Service" placement="top">
         <Grid item md={4} sm={6} xs={12}>
-          <MachineMaintenanceCard data={hrsTillNextService} />
+          <MachineMaintenanceCard data={hrsTillNextService} ID={machineID} />
         </Grid>
       </Tooltip>
     </Grow>
