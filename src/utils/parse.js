@@ -761,15 +761,16 @@ export const parseDataFromSSN = (data, timeFilterIndex) => {
         } else return 0;
       });
 
-      const machineStates = ["Off", "Offload", "Onload"];
+      const machineStatesAliases = ["Off", "Offload", "Onload"];
+      const machineStates = ["OFF", "IDLE", "ON"];
 
       const renameState = (state) => {
-        if (state === "OFF") {
-          return machineStates[0];
-        } else if (state === "IDLE") {
-          return machineStates[1];
-        } else if (state === "ON") {
-          return machineStates[2];
+        if (state === machineStates[0]) {
+          return machineStatesAliases[0];
+        } else if (state === machineStates[1]) {
+          return machineStatesAliases[1];
+        } else if (state === machineStates[2]) {
+          return machineStatesAliases[2];
         } else return "Unknown";
       };
 

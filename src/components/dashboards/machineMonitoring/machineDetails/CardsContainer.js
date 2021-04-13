@@ -45,13 +45,14 @@ export default function CardsContainer(props) {
   } = props.data;
 
   // machine status/state right now
+  const machineStatesAliases = ["Off", "Offload", "Onload"];
   const stateRightNow = {
     icon:
-      stateNow === "ON" ? (
+      stateNow === machineStatesAliases[2] ? (
         <PlayCircleFilledIcon
           style={{ color: colors.GREEN[700], height: iconHeight }}
         />
-      ) : stateNow === "IDLE" ? (
+      ) : stateNow === machineStatesAliases[1] ? (
         <PauseCircleFilledIcon
           style={{ color: colors.BLUE[700], height: iconHeight }}
         />
