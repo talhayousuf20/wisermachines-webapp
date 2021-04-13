@@ -53,17 +53,17 @@ export default function MachineCards(props) {
     return item;
   });
 
-  const renderCards = (item) =>
-    keys.minimalMachineSummaryCards ? (
-      <DashboardSummaryCardListViewVersion
-        data={{ name: item.name, ID: item._id }}
-      />
-    ) : (
-      <DashboardSummaryCard
-        compact={props.compact}
-        data={parseZoneDetailsData(item)}
-      />
-    );
+  // const renderCards = (item) =>
+  //   keys.minimalMachineSummaryCards ? (
+  //     <DashboardSummaryCardListViewVersion
+  //       data={{ name: item.name, ID: item._id }}
+  //     />
+  //   ) : (
+  //     <DashboardSummaryCard
+  //       compact={props.compact}
+  //       data={parseZoneDetailsData(item)}
+  //     />
+  //   );
 
   return (
     <Grid container spacing={2}>
@@ -123,27 +123,21 @@ export default function MachineCards(props) {
               in={true}
               {...{ timeout: animationDuration + index * animationDuration }}
             >
-              {keys.showMockData ? (
-                <Grid key={index} item md={3} sm={6} xs={12}>
-                  <DashboardSummaryCard
-                    compact={props.compact}
-                    data={{
-                      name: item.name,
-                      ID: item._id,
-                      mapping: true,
-                      status: status(),
-                      info1: info1(),
-                      info2: info2(),
-                      gaugeItem1: gaugeItem1(),
-                      gaugeItem2: gaugeItem2(),
-                    }}
-                  />
-                </Grid>
-              ) : (
-                <Grid key={index} item xs={12}>
-                  {renderCards(item)}
-                </Grid>
-              )}
+              <Grid key={index} item md={3} sm={6} xs={12}>
+                <DashboardSummaryCard
+                  compact={props.compact}
+                  data={{
+                    name: item.name,
+                    ID: item._id,
+                    mapping: true,
+                    status: status(),
+                    info1: info1(),
+                    info2: info2(),
+                    gaugeItem1: gaugeItem1(),
+                    gaugeItem2: gaugeItem2(),
+                  }}
+                />
+              </Grid>
             </Grow>
           ))}
         </Grid>
